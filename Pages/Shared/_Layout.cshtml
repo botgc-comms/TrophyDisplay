@@ -12,7 +12,7 @@
         <div class="page-background"></div>
 
         <!-- Main Content -->
-        <div class="content">
+        <div id="content-wrapper" class="content">
             @RenderBody()
         </div>
 
@@ -20,6 +20,7 @@
         @await Html.PartialAsync("_Keypad")
 
         <!-- Load JavaScript -->
+        <script src="~/js/navigation.js" asp-append-version="true"></script>
         <script src="~/js/keypad.js" asp-append-version="true"></script>
     </body>
 </html>

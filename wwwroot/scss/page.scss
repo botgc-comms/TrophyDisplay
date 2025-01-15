@@ -38,3 +38,18 @@ h1, h2, h3 {
 p, button, div {
     font-family: 'Multiple Sans Pro', sans-serif;
 }
+
+.content-wrapper {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+    &.slide-out {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    &.slide-in {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+

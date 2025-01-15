@@ -71,6 +71,18 @@ p, button, div {
   font-family: "Multiple Sans Pro", sans-serif;
 }
 
+.content-wrapper {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.content-wrapper.slide-out {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.content-wrapper.slide-in {
+  transform: translateX(0);
+  opacity: 1;
+}
+
 .keypad-overlay {
   position: fixed;
   top: 0;
@@ -145,6 +157,45 @@ p, button, div {
 }
 .keypad-buttons .action-btn {
   background: #c0392b;
+}
+
+.trophy-details {
+  text-align: center;
+  padding: 20px;
+}
+.trophy-details .trophy-title {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+.trophy-details .trophy-description {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+.trophy-details .trophy-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+.trophy-details .winner-section {
+  margin-top: 30px;
+}
+.trophy-details .winner-section h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+.trophy-details .winner-section .winner-image {
+  max-width: 50%;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+}
+.trophy-details .trophy-meta {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: #666;
+}
+.trophy-details .trophy-meta .trophy-slug {
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=styles.css.map */

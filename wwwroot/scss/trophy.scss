@@ -1,0 +1,46 @@
+.trophy-details {
+    text-align: center;
+    padding: 20px;
+
+    .trophy-title {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    .trophy-description {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+
+    .trophy-image {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .winner-section {
+        margin-top: 30px;
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .winner-image {
+            max-width: 50%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+    }
+
+    .trophy-meta {
+        margin-top: 20px;
+        font-size: 0.9em;
+        color: #666;
+
+        .trophy-slug {
+            font-weight: bold;
+        }
+    }
+}
