@@ -1,0 +1,40 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+    width: 2160px; /* Fixed width for portrait mode */
+    height: 3840px; /* Fixed height for portrait mode */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient( to bottom, #000000 0%, /* Black at the top */
+        #737373 33%, /* Dark grey by 33% */
+        #ffffff 50%, /* White by 50% */
+        #ffffff 100% /* Fully white at the bottom */
+    );
+    font-family: 'The Seasons', serif;
+    font-size: 16px;
+    color: #333;
+}
+
+.page-background {
+    position: fixed;
+    top: -40%; /* Shift the entire background upwards */
+    left: -300px; /* Shift slightly to the left */
+    width: calc(100% + 600px); /* Extend beyond the viewport horizontally */
+    height: calc(100% + 600px); /* Extend beyond the viewport vertically */
+    z-index: 0;
+    background: url('/images/club-logo.png') center center / contain no-repeat; /* Perfectly center the logo */
+    transform: rotate(10deg); /* Rotate the entire background 10 degrees clockwise */
+    opacity: 0.1; /* Set transparency */
+    pointer-events: none; /* Prevent user interaction */
+}
+
+h1, h2, h3 {
+    font-family: 'The Seasons', serif;
+    font-weight: bold;
+}
+
+p, button, div {
+    font-family: 'Multiple Sans Pro', sans-serif;
+}

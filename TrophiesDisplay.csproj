@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="QRCoder" Version="1.6.0" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\data\A01 - Club Championship\" />
+    <Folder Include="wwwroot\fonts\" />
+  </ItemGroup>
+
+  <!-- Sass Compilation Target -->
+  <Target Name="CompileSass" BeforeTargets="Build">
+    <Exec Command="sass wwwroot/scss/styles.scss wwwroot/css/styles.css" />
+  </Target>
+
+  <!-- Sass Watcher Target for dotnet run -->
+  <Target Name="WatchSass" BeforeTargets="Run">
+    <Exec Command="sass --watch wwwroot/scss:wwwroot/css" />
+  </Target>
+
+</Project>

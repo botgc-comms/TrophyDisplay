@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"]</title>
+
+        <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    </head>
+    <body>
+        <!-- Layered Background -->
+        <div class="page-background"></div>
+
+        <!-- Main Content -->
+        <div class="content">
+            @RenderBody()
+        </div>
+
+        <!-- Include Keypad Partial -->
+        @await Html.PartialAsync("_Keypad")
+
+        <!-- Load JavaScript -->
+        <script src="~/js/keypad.js" asp-append-version="true"></script>
+    </body>
+</html>
