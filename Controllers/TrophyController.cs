@@ -18,7 +18,7 @@ namespace TrophiesDisplay.Controllers
         [HttpGet("search/{slug}")]
         public IActionResult SearchTrophy(string slug)
         {
-            var url = _trophyService.GetTrophyUrl(slug); 
+            var url = _trophyService.GetTrophyUrl(slug);
 
             if (url != null)
             {
@@ -26,7 +26,13 @@ namespace TrophiesDisplay.Controllers
             }
             else
             {
-                return NotFound(slug);
+                return NotFound(new
+                {
+                    error = "Trophy not found",
+                    slug = "A01",
+                    message = "No trophy exists with the provided slug."
+                });
+
             }
         }
     }

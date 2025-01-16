@@ -16,16 +16,16 @@ namespace TrophiesDisplay.Pages
             _trophyService = trophyService;
         }
 
-        public Trophy? Trophy { get; private set; }
+       // public Trophy? Trophy { get; private set; }
         public string? QRCodeImageBase64 { get; private set; }
 
         public IActionResult OnGet(string slug)
         {
-            Trophy = _trophyService.GetTrophyBySlug(slug);
-            if (Trophy == null)
-            {
-                return NotFound(); // Return a 404 if the trophy is not found
-            }
+           // Trophy = _trophyService.GetTrophyBySlug(slug);
+           // if (Trophy == null)
+           // {
+           //     return NotFound(); // Return a 404 if the trophy is not found
+           // }
 
             // Generate QR Code
             var qrGenerator = new QRCodeGenerator();

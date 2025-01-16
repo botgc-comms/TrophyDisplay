@@ -15,7 +15,7 @@
             await new Promise((resolve) => setTimeout(resolve, 300));
 
             // Fetch the trophy details
-            const response = await fetch(`/api/trophy/details/${slug}`);
+            const response = await fetch(`/trophy/details/${slug}`);
             if (response.ok) {
                 const html = await response.text();
 

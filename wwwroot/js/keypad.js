@@ -61,7 +61,7 @@
 
     async function validateTrophyExists(slug) {
         try {
-            const response = await fetch(`/api/trophy/search/${slug}`);
+            const response = await fetch(`/trophy/search/${slug}`);
             if (response.ok) {
                 const result = await response.json();
                 if (result.url) {

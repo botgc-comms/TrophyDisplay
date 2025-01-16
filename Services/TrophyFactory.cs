@@ -32,7 +32,7 @@ namespace TrophiesDisplay.Services
         {
             try
             {
-                var trophyUrl = $"{_settings.BaseUrl}/trophy/{metadata.Slug}";
+                var trophyUrl = $"{_settings.BaseUrl}/#{metadata.Slug}";
 
                 // Read additional metadata or interpret raw metadata
                 return new Trophy

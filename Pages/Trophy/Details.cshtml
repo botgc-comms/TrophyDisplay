@@ -1,0 +1,15 @@
+﻿@page "{slug}"
+@model TrophyDetailsModel
+
+@if (Model.Trophy == null)
+{
+    <p>No trophy found.</p>
+}
+else
+{
+    <h1>@Model.Trophy.Name</h1>
+    <p>@Model.Trophy.Description</p>
+    <div>
+        @Html.Raw(Model.Trophy.QRCodeSVG)
+    </div>
+}
