@@ -16,19 +16,25 @@ public class TrophyDetailsModel : PageModel
 
     public void OnGet(string slug)
     {
-        var trophy = _trophyService.GetTrophyBySlug(slug);
-        if (trophy == null)
+        var trophyDto = _trophyService.GetTrophyBySlug(slug);
+        if (trophyDto == null)
         {
+            // Return a 404 status if the trophy doesn't exist
+            Response.StatusCode = 404;
             Trophy = null;
             return;
         }
 
+        // Add previous and next slugs to the response headers
+        Response.Headers["X-Previous-Slug"] = trophyDto.PreviousSlug;
+        Response.Headers["X-Next-Slug"] = trophyDto.NextSlug;
+
         // Map domain model to ViewModel
         Trophy = new TrophyViewModel
         {
-            Name = trophy.Name,
-            Description = trophy.Description,
-            QRCodeSVG = trophy.QRCodeSVG
+            Name = trophyDto.Name,
+            Description = trophyDto.Description,
+            QRCodeSVG = trophyDto.QRCodeSVG
         };
     }
 }

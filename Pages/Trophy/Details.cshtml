@@ -1,6 +1,10 @@
 ﻿@page "{slug}"
 @model TrophyDetailsModel
 
+@{
+    Layout = null; 
+}
+
 @if (Model.Trophy == null)
 {
     <p>No trophy found.</p>

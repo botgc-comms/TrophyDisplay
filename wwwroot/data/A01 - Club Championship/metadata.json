@@ -1,10 +1,6 @@
 {
-  "slug": "D13",
-  "name": "Ladies Cup",
-  "description": "Awarded to the best female golfer of the year.",
-  "yearAwarded": 2022,
-  "presentedBy": "Ladies Committee",
-  "imageUrl": "trophy.jpg",
-  "winnerImageUrl": "winner.jpg",
-  "competitionFormat": "Stroke Play"
+  "slug": "A01",
+  "name": "Club Championship",
+  "description": "insert description",
+  "imageUrl": "trophy.jpeg"
 }

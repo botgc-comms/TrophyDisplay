@@ -1,4 +1,6 @@
-.trophy-details {
+$transition-duration: 0.5s;
+
+/*.trophy-details {
     text-align: center;
     padding: 20px;
 
@@ -43,4 +45,41 @@
             font-weight: bold;
         }
     }
+}*/
+
+
+
+#trophy-container {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
 }
+
+.trophy-panel {
+    flex: 0 0 100vw;
+    height: 100vh;
+    width: 100vh;
+    position: absolute;
+    top: 0;
+    transition: transform 0.5s ease-in-out;
+
+    &.left {
+        transform: translateX(-100%);
+        background-color: #0088ff8c;
+    }
+
+    &.middle {
+        transform: translateX(0);
+        background-color: #ff006d8c;
+    }
+
+    &.right {
+        transform: translateX(100%);
+        background-color: #f2ff008c;
+    }
+}
+
+
+

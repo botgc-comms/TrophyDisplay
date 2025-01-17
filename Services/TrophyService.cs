@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Linq;
+using TrophiesDisplay.Dtos;
 using TrophiesDisplay.Models;
 
 namespace TrophiesDisplay.Services
@@ -15,21 +16,29 @@ namespace TrophiesDisplay.Services
             _logger = logger;   
         }
 
-        public Trophy? GetTrophyBySlug(string slug)
+        public TrophyDto? GetTrophyBySlug(string slug)
         {
-            _logger.LogInformation($"Retrieve Trophy for slug {slug}");
+            _logger.LogInformation($"Retrieve Trophy details for slug {slug}");
 
-            // Retrieve the cached trophy data from TrophyIndexer
-            var trophy = _trophyIndexer.FindTrophyBySlug(slug);
-            return trophy;
-        }
+            // Retrieve the trophy
+            var trophyDto = _trophyIndexer.FindTrophyBySlug(slug);
+            if (trophyDto == null) return null;
 
-        public string? GetTrophyUrl(string slug)
-        {
-            _logger.LogInformation($"Lookup Trophy URL for slug {slug}");
+            // Find the previous and next trophies
+            var previousTrophy = _trophyIndexer.FindPreviousTrophyBySlug(slug);
+            var nextTrophy = _trophyIndexer.FindNextTrophyBySlug(slug);
 
-            var trophy = _trophyIndexer.FindTrophyBySlug(slug);
-            return trophy != null ? trophy.Url : null;
+            // Map Trophy to TrophyDto
+            return new TrophyDto
+            {
+                Slug = trophyDto.Slug,
+                Name = trophyDto.Name,
+                Description = trophyDto.Description,
+                QRCodeSVG = trophyDto.QRCodeSVG,
+                Url = trophyDto.Url,
+                PreviousSlug = previousTrophy?.Slug,
+                NextSlug = nextTrophy?.Slug
+            };
         }
     }
 }

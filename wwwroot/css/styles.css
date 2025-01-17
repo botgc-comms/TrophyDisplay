@@ -159,43 +159,79 @@ p, button, div {
   background: #c0392b;
 }
 
-.trophy-details {
-  text-align: center;
-  padding: 20px;
+/*.trophy-details {
+    text-align: center;
+    padding: 20px;
+
+    .trophy-title {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    .trophy-description {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+
+    .trophy-image {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .winner-section {
+        margin-top: 30px;
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .winner-image {
+            max-width: 50%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+    }
+
+    .trophy-meta {
+        margin-top: 20px;
+        font-size: 0.9em;
+        color: #666;
+
+        .trophy-slug {
+            font-weight: bold;
+        }
+    }
+}*/
+#trophy-container {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
 }
-.trophy-details .trophy-title {
-  font-size: 2em;
-  margin-bottom: 10px;
+
+.trophy-panel {
+  flex: 0 0 100vw;
+  height: 100vh;
+  width: 100vh;
+  position: absolute;
+  top: 0;
+  transition: transform 0.5s ease-in-out;
 }
-.trophy-details .trophy-description {
-  font-size: 1.2em;
-  margin-bottom: 20px;
+.trophy-panel.left {
+  transform: translateX(-100%);
+  background-color: rgba(0, 136, 255, 0.5490196078);
 }
-.trophy-details .trophy-image {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
+.trophy-panel.middle {
+  transform: translateX(0);
+  background-color: rgba(255, 0, 109, 0.5490196078);
 }
-.trophy-details .winner-section {
-  margin-top: 30px;
-}
-.trophy-details .winner-section h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-.trophy-details .winner-section .winner-image {
-  max-width: 50%;
-  height: auto;
-  border-radius: 10px;
-  border: 2px solid #ddd;
-}
-.trophy-details .trophy-meta {
-  margin-top: 20px;
-  font-size: 0.9em;
-  color: #666;
-}
-.trophy-details .trophy-meta .trophy-slug {
-  font-weight: bold;
+.trophy-panel.right {
+  transform: translateX(100%);
+  background-color: rgba(242, 255, 0, 0.5490196078);
 }
 
 /*# sourceMappingURL=styles.css.map */
