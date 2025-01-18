@@ -2,5 +2,6 @@
   "slug": "D05",
   "name": "Ladies Challenge Bowl",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

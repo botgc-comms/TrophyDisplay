@@ -11,9 +11,39 @@
 }
 else
 {
-    <h1>@Model.Trophy.Name</h1>
-    <p>@Model.Trophy.Description</p>
-    <div>
-        @Html.Raw(Model.Trophy.QRCodeSVG)
+    <div class="trophy-page">
+        <header>
+            <div class="title">
+                <h1>@Model.Trophy.Name</h1>
+            </div>
+            <div class="qr-code">
+                @Html.Raw(Model.Trophy.QRCodeSVG)
+            </div>
+        </header>
+        <div class="content">
+            <div class="main-content">
+                <div class="trophy-image">
+                    <img src="@Model.Trophy.TrophyImage" alt="@Model.Trophy.Name">
+                </div>
+                <div class="winner-info">
+                    <div class="image-container">
+                        <img src="@Model.Trophy.TrophyImage" alt="@Model.Trophy.Name">
+                    </div>
+                    <div class="details">
+                        <h2>2024 Winner: Jane Smith</h2>
+                        <p>18 hole medal</p>
+                        <p>Played in May</p>
+                    </div>
+                </div>
+            </div>
+            <div class="dynamic-html">
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel tortor vel dolor pellentesque ultrices sed eget purus. Nullam facilisis, ex at fermentum efficitur, urna nunc scelerisque orci, id dapibus metus lacus ac est.  Nullam facilisis, ex at fermentum efficitur, urna nunc scelerisque orci, id dapibus metus lacus ac est.</p>
+                    <p>Curabitur a lacus risus. Integer id sapien nec libero convallis tristique nec ac lectus. Mauris blandit sapien ac tortor finibus, nec pellentesque odio tincidunt. Duis consectetur magna nec arcu tempor, ut tincidunt elit faucibus.</p>
+                    <p>Proin ac mauris non justo vehicula efficitur. Phasellus vel ipsum interdum, elementum neque nec, pharetra lacus. Aenean sit amet massa sollicitudin, luctus nisi ut, accumsan magna. Sed ac feugiat elit, nec pretium nulla.</p>
+                    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus dapibus lectus vel leo malesuada, eget tempus justo tempor. Ut volutpat elit et quam dictum, at interdum metus ultricies. Fusce malesuada ante id justo dapibus, eget iaculis erat sodales.</p>
+                </div>
+            </div>
+        </div>
     </div>
 }

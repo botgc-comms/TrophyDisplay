@@ -2,5 +2,6 @@
   "slug": "C04",
   "name": "Junior Open",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

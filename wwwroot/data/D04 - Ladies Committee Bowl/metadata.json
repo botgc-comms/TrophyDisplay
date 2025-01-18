@@ -2,5 +2,6 @@
   "slug": "D04",
   "name": "Ladies Committee Bowl",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

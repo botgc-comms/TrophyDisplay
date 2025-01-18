@@ -2,5 +2,6 @@
   "slug": "B44",
   "name": "Winter League",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

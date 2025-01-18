@@ -2,5 +2,6 @@
   "slug": "D24",
   "name": "Nette Moir Bowl",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": "2024-winner.jpg"
 }

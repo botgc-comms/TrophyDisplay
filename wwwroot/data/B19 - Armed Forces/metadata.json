@@ -2,5 +2,6 @@
   "slug": "B19",
   "name": "Armed Forces",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": "2024-winner.JPG"
 }

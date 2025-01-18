@@ -1,85 +1,117 @@
-$transition-duration: 0.5s;
 
-/*.trophy-details {
-    text-align: center;
-    padding: 20px;
-
-    .trophy-title {
-        font-size: 2em;
-        margin-bottom: 10px;
-    }
-
-    .trophy-description {
-        font-size: 1.2em;
-        margin-bottom: 20px;
-    }
-
-    .trophy-image {
-        max-width: 100%;
-        height: auto;
-        margin-bottom: 20px;
-    }
-
-    .winner-section {
-        margin-top: 30px;
-
-        h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .winner-image {
-            max-width: 50%;
-            height: auto;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-        }
-    }
-
-    .trophy-meta {
-        margin-top: 20px;
-        font-size: 0.9em;
-        color: #666;
-
-        .trophy-slug {
-            font-weight: bold;
-        }
-    }
-}*/
-
-
-
-#trophy-container {
+.trophy-page {
     display: flex;
-    position: relative;
-    overflow: hidden;
+    flex-direction: column;
+    height: 100vh;
     width: 100vw;
-    height: 100vh;
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4rem;
+        color: #fff;
+        height: 15vh;
+
+        .title {
+            width: 54vw;
+            text-align: center;
+
+            h1 {
+                font-size: 10rem;
+                margin: 0;
+                padding-top: 4rem;
+            }
+        }
+
+        .qr-code {
+            width: 20rem;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            padding: 4rem;
+            height: 40vh;
+            flex-shrink: 0;
+
+            .trophy-image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 54vw;
+                height: 100%;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+
+            .winner-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-left: 4rem;
+                width: calc(100vw - 54vw - 12rem);
+                height: 40vh;
+
+                .image-container {
+                    position: relative;
+                    height: 60%; 
+                    overflow: hidden; 
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                .winners-photo {
+                    width: 100%;
+                    height: 60%;
+                    object-fit: cover;
+                    object-position: top;
+                }
+
+                .details {
+                    h2 {
+                        font-size: 1.5rem;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    p {
+                        margin: 0.25rem 0;
+                    }
+                }
+            }
+        }
+
+        .dynamic-html {
+            flex: 1;
+            padding: 4rem;
+            overflow-y: clip;
+            font-size: 3rem;
+            text-align: justify;
+            font-weight: lighter;
+            column-count: 2;
+            column-gap: 4rem;
+
+            padding {
+                display: inline-block;
+                margin-top: 0px;
+            }
+        }
+    }
 }
-
-.trophy-panel {
-    flex: 0 0 100vw;
-    height: 100vh;
-    width: 100vh;
-    position: absolute;
-    top: 0;
-    transition: transform 0.5s ease-in-out;
-
-    &.left {
-        transform: translateX(-100%);
-        background-color: #0088ff8c;
-    }
-
-    &.middle {
-        transform: translateX(0);
-        background-color: #ff006d8c;
-    }
-
-    &.right {
-        transform: translateX(100%);
-        background-color: #f2ff008c;
-    }
-}
-
-
-

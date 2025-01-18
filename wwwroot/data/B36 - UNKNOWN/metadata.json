@@ -2,5 +2,6 @@
   "slug": "B36",
   "name": "UNKNOWN",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

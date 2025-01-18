@@ -34,7 +34,8 @@ public class TrophyDetailsModel : PageModel
         {
             Name = trophyDto.Name,
             Description = trophyDto.Description,
-            QRCodeSVG = trophyDto.QRCodeSVG
+            QRCodeSVG = trophyDto.QRCodeSVG,
+            TrophyImage = trophyDto.TrophyImage
         };
     }
 }

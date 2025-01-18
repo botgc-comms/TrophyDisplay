@@ -2,5 +2,6 @@
   "slug": "B42",
   "name": "JF Trevor Prize",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

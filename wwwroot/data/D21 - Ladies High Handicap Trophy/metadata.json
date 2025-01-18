@@ -2,5 +2,6 @@
   "slug": "D21",
   "name": "Ladies High Handicap Trophy",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

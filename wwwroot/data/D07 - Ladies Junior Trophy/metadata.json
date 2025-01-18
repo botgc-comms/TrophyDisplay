@@ -2,5 +2,6 @@
   "slug": "D07",
   "name": "Ladies Junior Trophy",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

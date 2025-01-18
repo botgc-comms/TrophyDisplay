@@ -2,5 +2,6 @@
   "slug": "D10",
   "name": "Edith Richards Cup",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": "2024-winner.jpg"
 }

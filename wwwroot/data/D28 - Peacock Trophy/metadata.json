@@ -2,5 +2,6 @@
   "slug": "D28",
   "name": "Peacock Trophy",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

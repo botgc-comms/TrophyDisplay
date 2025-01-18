@@ -2,5 +2,6 @@
   "slug": "B11",
   "name": "Scratch Match Trophy",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

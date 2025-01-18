@@ -2,5 +2,6 @@
   "slug": "B07",
   "name": "Cowie Cup",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

@@ -2,5 +2,6 @@
   "slug": "B43",
   "name": "Autumn Mixed Trophy",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

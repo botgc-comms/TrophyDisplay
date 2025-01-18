@@ -6,51 +6,51 @@
     ];
 
     let isTransitioning = false;
+    const TRANSITION_DURATION = 500; // milliseconds
 
-    // Get the trophy relating to the specified slug
-    async function getTrophy(slug) {
-        const response = await fetch(`/trophy/details/${slug}`);
-
-        if (response.ok) {
-            const previous = response.headers.get("X-Previous-Slug");
-            const next = response.headers.get("X-Next-Slug");
-            const html = await response.text();
-
-            return {
-                slug, 
-                html,
-                previous, 
-                next
-            }
-        }
-
-        return null;
-    }
-
-    // Function to load a trophy into a specific panel
-    async function loadTrophy(trophy, panel) {
-        panel.dataset.slug = trophy.slug.toUpperCase(); 
+    // Helper functions
+    const setPanelAttributes = (panel, trophy) => {
+        panel.dataset.slug = trophy.slug.toUpperCase();
         panel.dataset.previous = trophy.previous.toUpperCase();
         panel.dataset.next = trophy.next.toUpperCase();
+        panel.innerHTML = trophy.html;
+    };
 
-        panel.innerHTML = trophy.html; 
-    }
+    const transformPanel = (panel, translateX, position, display = "inherit") => {
+        panel.style.transform = `translateX(${translateX}%)`;
+        panel.dataset.position = position;
+        panel.style.display = display;
+    };
 
-    // Function to handle transitions
-    async function handleTransition(newSlug) {
+    const getTrophy = async (slug) => {
+        const response = await fetch(`/trophy/details/${slug}`);
+        if (response.ok) {
+            return {
+                slug,
+                html: await response.text(),
+                previous: response.headers.get("X-Previous-Slug"),
+                next: response.headers.get("X-Next-Slug"),
+            };
+        }
+        return null;
+    };
+
+    const loadTrophy = async (slug, panel) => {
+        const trophy = await getTrophy(slug);
+        if (trophy) {
+            setPanelAttributes(panel, trophy);
+        }
+    };
+
+    const handleTransition = async (newSlug) => {
         if (isTransitioning) return;
 
-        const leftPanel = panels.find(panel => panel.dataset.position === "1");
-        const middlePanel = panels.find(panel => panel.dataset.position === "2");
-        const rightPanel = panels.find(panel => panel.dataset.position === "3");
+        const [leftPanel, middlePanel, rightPanel] = panels.sort(
+            (a, b) => a.dataset.position - b.dataset.position
+        );
 
-        // The requested slug is already being displaued
-        if (newSlug === middlePanel.dataset.slug) {
-            console.log(`Slug ${newSlug} is already visible.`);
-            return; 
-        }
+        if (newSlug === middlePanel.dataset.slug) return;
 
-        // Determine what action needs to be taken
         let action = "load";
         if (leftPanel.dataset.slug === newSlug) action = "moveLeft";
         if (rightPanel.dataset.slug === newSlug) action = "moveRight";
@@ -58,136 +58,101 @@
         isTransitioning = true;
 
         if (action === "moveLeft") {
-            rightPanel.style.display = "none"
-            rightPanel.style.transform = "translateX(-100%)";
-            rightPanel.dataset.position = "1"
-
-            middlePanel.style.transform = "translateX(100%)";
-            middlePanel.dataset.position = "3"
-
-            leftPanel.style.transform = "translateX(0%)";
-            leftPanel.dataset.position = "2"
+            transformPanel(rightPanel, -100, "1", "none");
+            transformPanel(middlePanel, 100, "3");
+            transformPanel(leftPanel, 0, "2");
 
             setTimeout(async () => {
-
-                const data = await getTrophy(leftPanel.dataset.previous);
-                if (data) {
-                    await loadTrophy(data, rightPanel);
-                }
-
-                rightPanel.style.display = "inherit"
+                await loadTrophy(leftPanel.dataset.previous, rightPanel);
+                transformPanel(rightPanel, -100, "1");
                 isTransitioning = false;
-            }, 500);
-
-
+            }, TRANSITION_DURATION);
         } else if (action === "moveRight") {
-
-            leftPanel.style.display = "none"
-            leftPanel.style.transform = "translateX(100%)";
-            leftPanel.dataset.position = "3"
-
-            middlePanel.style.transform = "translateX(-100%)";
-            middlePanel.dataset.position = "1"
-
-            rightPanel.style.transform = "translateX(0%)";
-            rightPanel.dataset.position = "2"
+            transformPanel(leftPanel, 100, "3", "none");
+            transformPanel(middlePanel, -100, "1");
+            transformPanel(rightPanel, 0, "2");
 
             setTimeout(async () => {
-
-                const data = await getTrophy(rightPanel.dataset.next);
-                if (data) {
-                    await loadTrophy(data, leftPanel);
-                }
-
-                leftPanel.style.display = "inherit"
+                await loadTrophy(rightPanel.dataset.next, leftPanel);
+                transformPanel(leftPanel, 100, "3");
                 isTransitioning = false;
-            }, 500);
+            }, TRANSITION_DURATION);
         } else if (action === "load") {
-
             const trophyData = await getTrophy(newSlug);
-
             if (trophyData) {
-                await loadTrophy(trophyData, rightPanel);
+                setPanelAttributes(rightPanel, trophyData);
 
-                leftPanel.style.display = "none"
-                leftPanel.style.transform = "translateX(100%)";
-                leftPanel.dataset.position = "3"
-
-                middlePanel.style.transform = "translateX(-100%)";
-                middlePanel.dataset.position = "1"
-
-                rightPanel.style.transform = "translateX(0%)";
-                rightPanel.dataset.position = "2"
+                transformPanel(leftPanel, 100, "3", "none");
+                transformPanel(middlePanel, -100, "1");
+                transformPanel(rightPanel, 0, "2");
 
                 setTimeout(async () => {
-
-                    const payload = [
-                        { slug: trophyData.previous, panel: middlePanel },
-                        { slug: trophyData.next, panel: leftPanel }
-                    ];
-
-                    const promises = payload.map(async (p) => {
-                        if (p.panel.dataset.slug !== p.slug) {
-                            const data = await getTrophy(p.slug);
-                            if (data) {
-                                await loadTrophy(data, p.panel);
-                            }
-                        }
-                    });
-
-                    await Promise.all(promises);
-                    leftPanel.style.display = "inherit"
+                    await Promise.all([
+                        loadTrophy(trophyData.previous, middlePanel),
+                        loadTrophy(trophyData.next, leftPanel),
+                    ]);
+                    transformPanel(leftPanel, 100, "3");
                     isTransitioning = false;
-                }, 500);
-
+                }, TRANSITION_DURATION);
             }
         }
-    }
+    };
 
-    // Initial load
-    async function setupInitialState(initialSlug) {
-
-        const leftPanel = panels.find(panel => panel.dataset.position === "1") || panels[0];
-        const middlePanel = panels.find(panel => panel.dataset.position === "2") || panels[1];
-        const rightPanel = panels.find(panel => panel.dataset.position === "3") || panels[2];
-
+    const setupInitialState = async (initialSlug) => {
+        const [leftPanel, middlePanel, rightPanel] = panels;
         leftPanel.dataset.position = "1";
         middlePanel.dataset.position = "2";
         rightPanel.dataset.position = "3";
 
-        var trophyData = await getTrophy(initialSlug);
+        const trophyData = await getTrophy(initialSlug);
         if (trophyData) {
-
-            await loadTrophy(trophyData, middlePanel);
-
-            const payload = [
-                { slug: trophyData.previous, panel: leftPanel },
-                { slug: trophyData.next, panel: rightPanel }
-            ];
-
-            const promises = payload.map(async (p) => {
-                if (p.panel.dataset.slug !== p.slug) {
-                    const data = await getTrophy(p.slug); 
-                    if (data) {
-                        await loadTrophy(data, p.panel); 
-                    }
-                }
-            });
-
-            await Promise.all(promises);
+            setPanelAttributes(middlePanel, trophyData);
+            await Promise.all([
+                loadTrophy(trophyData.previous, leftPanel),
+                loadTrophy(trophyData.next, rightPanel),
+            ]);
         }
-    }
+    };
 
+    const debounce = (func, delay) => {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func(...args), delay);
+        };
+    };
 
-    // Handle hash changes
-    function handleHashChange() {
+    const handleHashChange = debounce(() => {
         const newSlug = window.location.hash.substring(1) || "A01";
         handleTransition(newSlug.toUpperCase());
-    }
+    }, 200);
 
-    // Initialize
+    const moveNext = () => {
+        const middlePanel = panels.find(panel => panel.dataset.position === "2");
+        if (middlePanel) {
+            const nextSlug = middlePanel.dataset.next;
+            if (nextSlug) {
+                window.location.hash = `#${nextSlug}`;
+            }
+        }
+    };
+
+    const movePrevious = () => {
+        const middlePanel = panels.find(panel => panel.dataset.position === "2");
+        if (middlePanel) {
+            const previousSlug = middlePanel.dataset.previous;
+            if (previousSlug) {
+                window.location.hash = `#${previousSlug}`;
+            }
+        }
+    };
+
+    // Initialise
     const initialSlug = window.location.hash.substring(1) || "A01";
     setupInitialState(initialSlug);
-
     window.addEventListener("hashchange", handleHashChange);
+
+    // Expose moveNext for external use
+    window.moveNext = moveNext;
+    window.movePrevious = movePrevious;
 });

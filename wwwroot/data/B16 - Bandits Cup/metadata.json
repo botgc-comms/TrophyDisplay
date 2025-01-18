@@ -2,5 +2,6 @@
   "slug": "B16",
   "name": "Bandits Cup",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

@@ -2,5 +2,6 @@
   "slug": "C01",
   "name": "Most Improved Junior",
   "description": "insert description",
-  "imageUrl": "trophy.jpeg"
+  "imageUrl": "trophy.jpeg",
+  "winnerImage": ""
 }

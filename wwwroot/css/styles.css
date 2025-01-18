@@ -12,9 +12,9 @@
 }
 @font-face {
   font-family: "The Seasons";
-  src: url("/fonts/Fontspring-DEMO-theseasons-It.otf") format("opentype");
-  font-weight: normal;
-  font-style: italic;
+  src: url("/fonts/Fontspring-DEMO-theseasons-lt.otf") format("opentype");
+  font-weight: lighter;
+  font-style: normal;
 }
 @font-face {
   font-family: "Multiple Sans Pro";
@@ -64,7 +64,9 @@ html, body {
 
 h1, h2, h3 {
   font-family: "The Seasons", serif;
-  font-weight: bold;
+  font-weight: lighter;
+  line-height: 181px;
+  text-transform: uppercase;
 }
 
 p, button, div {
@@ -81,6 +83,35 @@ p, button, div {
 .content-wrapper.slide-in {
   transform: translateX(0);
   opacity: 1;
+}
+
+#trophy-container {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.trophy-panel {
+  flex: 0 0 100vw;
+  height: 100vh;
+  width: 100vh;
+  position: absolute;
+  top: 0;
+  transition: transform 0.5s ease-in-out;
+}
+.trophy-panel.left {
+  transform: translateX(-100%);
+  /*background-color: #0088ff8c;*/
+}
+.trophy-panel.middle {
+  transform: translateX(0);
+  /*background-color: #ff006d8c;*/
+}
+.trophy-panel.right {
+  transform: translateX(100%);
+  /*background-color: #f2ff008c;*/
 }
 
 .keypad-overlay {
@@ -159,79 +190,103 @@ p, button, div {
   background: #c0392b;
 }
 
-/*.trophy-details {
-    text-align: center;
-    padding: 20px;
-
-    .trophy-title {
-        font-size: 2em;
-        margin-bottom: 10px;
-    }
-
-    .trophy-description {
-        font-size: 1.2em;
-        margin-bottom: 20px;
-    }
-
-    .trophy-image {
-        max-width: 100%;
-        height: auto;
-        margin-bottom: 20px;
-    }
-
-    .winner-section {
-        margin-top: 30px;
-
-        h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .winner-image {
-            max-width: 50%;
-            height: auto;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-        }
-    }
-
-    .trophy-meta {
-        margin-top: 20px;
-        font-size: 0.9em;
-        color: #666;
-
-        .trophy-slug {
-            font-weight: bold;
-        }
-    }
-}*/
-#trophy-container {
+.trophy-page {
   display: flex;
-  position: relative;
-  overflow: hidden;
+  flex-direction: column;
+  height: 100vh;
   width: 100vw;
-  height: 100vh;
 }
-
-.trophy-panel {
-  flex: 0 0 100vw;
-  height: 100vh;
-  width: 100vh;
-  position: absolute;
-  top: 0;
-  transition: transform 0.5s ease-in-out;
+.trophy-page header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem;
+  color: #fff;
+  height: 15vh;
 }
-.trophy-panel.left {
-  transform: translateX(-100%);
-  background-color: rgba(0, 136, 255, 0.5490196078);
+.trophy-page header .title {
+  width: 54vw;
+  text-align: center;
 }
-.trophy-panel.middle {
-  transform: translateX(0);
-  background-color: rgba(255, 0, 109, 0.5490196078);
+.trophy-page header .title h1 {
+  font-size: 10rem;
+  margin: 0;
+  padding-top: 4rem;
 }
-.trophy-panel.right {
-  transform: translateX(100%);
-  background-color: rgba(242, 255, 0, 0.5490196078);
+.trophy-page header .qr-code {
+  width: 20rem;
+}
+.trophy-page .content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.trophy-page .content .main-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 4rem;
+  height: 40vh;
+  flex-shrink: 0;
+}
+.trophy-page .content .main-content .trophy-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 54vw;
+  height: 100%;
+}
+.trophy-page .content .main-content .trophy-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.trophy-page .content .main-content .winner-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-left: 4rem;
+  width: calc(46vw - 12rem);
+  height: 40vh;
+}
+.trophy-page .content .main-content .winner-info .image-container {
+  position: relative;
+  height: 60%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.trophy-page .content .main-content .winner-info .image-container img {
+  width: 100%;
+}
+.trophy-page .content .main-content .winner-info .winners-photo {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  object-position: top;
+}
+.trophy-page .content .main-content .winner-info .details h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.trophy-page .content .main-content .winner-info .details p {
+  margin: 0.25rem 0;
+}
+.trophy-page .content .dynamic-html {
+  flex: 1;
+  padding: 4rem;
+  overflow-y: clip;
+  font-size: 3rem;
+  text-align: justify;
+  font-weight: lighter;
+  column-count: 2;
+  column-gap: 4rem;
+}
+.trophy-page .content .dynamic-html padding {
+  display: inline-block;
+  margin-top: 0px;
 }
 
 /*# sourceMappingURL=styles.css.map */
