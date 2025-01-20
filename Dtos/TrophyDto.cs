@@ -7,6 +7,7 @@
         public string Description { get; set; } = string.Empty;
         public string QRCodeSVG { get; set; } = string.Empty;
         public string TrophyImage { get; set; } = string.Empty;
+        public string WinnerImage { get; set; } = string.Empty;
 
         // Optional Links for HATEOAS
         public string? PreviousSlug { get; set; }

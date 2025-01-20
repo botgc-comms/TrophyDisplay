@@ -40,6 +40,7 @@ namespace TrophiesDisplay.Services
                 Description = trophy.Description,
                 QRCodeSVG = trophy.QRCodeSVG,
                 TrophyImage = trophy.ImageUrl,
+                WinnerImage = trophy.WinnerImage,
                 Url = trophy.Url,
                 PreviousSlug = previousTrophy?.Slug,
                 NextSlug = nextTrophy?.Slug

@@ -39,7 +39,7 @@ namespace TrophiesDisplay.Services
                         if (metadata != null)
                         {
                             metadata.ImageUrl = ResolvePath(dir, metadata.ImageUrl);
-                            metadata.WinnerImageUrl = ResolvePath(dir, metadata.WinnerImageUrl);
+                            metadata.WinnerImage = ResolvePath(dir, metadata.WinnerImage);
                         }
 
                         return metadata;

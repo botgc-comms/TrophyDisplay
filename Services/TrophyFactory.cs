@@ -42,7 +42,7 @@ namespace TrophiesDisplay.Services
                     Name = metadata.Name,
                     Description = metadata.Description,
                     ImageUrl = metadata.ImageUrl,
-                    WinnerImageUrl = metadata.WinnerImageUrl,
+                    WinnerImage = metadata.WinnerImage,
                     QRCodeSVG = _qRCodeGenerator.GetSVG(trophyUrl)
                 };
             }

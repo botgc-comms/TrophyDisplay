@@ -11,7 +11,7 @@
         public int YearAwarded { get; set; }
         public string PresentedBy { get; set; } = string.Empty;
         public string? ImageUrl { get; set; }
-        public string? WinnerImageUrl { get; set; }
+        public string? WinnerImage { get; set; }
         public string CompetitionFormat { get; set; } = string.Empty;
     }
 }
